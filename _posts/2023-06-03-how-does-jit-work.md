@@ -80,6 +80,62 @@ Here's an example of what you might see with **-XX:+PrintCompilation**:
 
 This shows the order of method compilations (the first column), the compilation level (the second column), the method compiled, and the size of the method in bytes.
 
+## Understanding On-Stack Replacement (OSR)
+
+OSR, as applied in Java's JIT compilation process, enables the JVM to optimize code during execution, rather than waiting for a method to finish executing before applying optimizations. By identifying hotspots within loops or long-running code segments, OSR allows the JIT compiler to suspend the method's execution, perform additional optimizations, recompile the code, and replace it on the call stack. This on-the-fly optimization adapts to the runtime behavior of the code, potentially unlocking significant performance improvements.
+
+Let's illustrate the process with a simple example. Consider the following Java code snippet:
+
+```java
+public int calculateSum() {
+    int sum = 0;
+    for (int i = 0; i < 100000; i++) {
+        sum += i;
+    }
+    return sum;
+}
+```
+
+In this scenario, the calculateSum() method calculates the sum of numbers from 0 to 99999. As the loop executes repeatedly, the JVM can recognize the hotspot and trigger OSR. At this point, the JIT compiler suspends the execution, applies further optimizations such as loop unrolling or inlining, recompiles the code, and replaces it on the call stack. Consequently, subsequent iterations of the loop execute with the optimized version, potentially leading to improved performance.
+
+Examining PrintCompilation and Its Flags:
+To gain insights into JIT optimizations, including OSR events, the JVM provides a useful diagnostic flag called **PrintCompilation**. When enabled, it prints information about JIT compilation activities and the methods being compiled. Additionally, it reveals various flags denoting the specific optimizations applied during the compilation process.
+
+Here are some of the flags printed by **PrintCompilation**:
+
+- **!:** Indicates that the method is interpreted, not compiled.
+- **s:** Indicates that the method has been compiled in a tiered compilation setup.
+- **c:** Denotes a method compiled without tiered compilation.
+- **b:** Marks a method compiled with full optimization.
+- **m:** Signifies that the method was compiled with OSR support.
+- **o:** Indicates a method compiled with on-stack replacement (OSR) compilation.
+
+By observing these flags, developers can gather valuable information about the JIT compilation process, including whether OSR optimizations were applied to specific methods.
+
+
+Apart from On-Stack Replacement (OSR), Just-in-Time (JIT) compilers employ several other optimization techniques to improve the performance of Java code. Here are a few notable optimizations commonly applied by JIT compilers:
+
+### Method Inlining:
+Inlining is a powerful optimization technique where a method call is replaced with the actual code of the called method. By eliminating the overhead of method invocation, inlining reduces the cost of method calls and enables further optimizations. Inlining is particularly beneficial for small, frequently called methods, as it reduces the overhead of method dispatch and parameter passing.
+
+### Loop Unrolling:
+Loop unrolling is a technique where the compiler replicates the loop body multiple times, reducing the number of loop iterations. By eliminating loop control overhead, such as loop counters and condition checks, loop unrolling can improve performance. It also allows the compiler to apply other optimizations, such as instruction scheduling and register allocation, more effectively.
+
+### Common Subexpression Elimination (CSE):
+CSE is an optimization that identifies and eliminates redundant computations. It recognizes when the same expression is computed multiple times within a method and replaces subsequent occurrences with a reference to the previously computed result. This optimization reduces the number of computations and improves code efficiency.
+
+### Dead Code Elimination:
+Dead code elimination involves removing portions of code that have no impact on the program's final result. This optimization identifies and eliminates unreachable or redundant code, reducing the program's execution time and memory footprint.
+
+### Constant Folding and Propagation:
+Constant folding replaces constant expressions with their computed values at compile time, eliminating the need for runtime computation. Constant propagation further extends this optimization by replacing variables with their constant values whenever possible, improving code performance and reducing overhead.
+
+### Escape Analysis:
+Escape analysis is a technique that determines whether objects created within a method stay confined within that method or escape to other parts of the program. If objects are detected as not escaping, the compiler can apply further optimizations, such as stack allocation instead of heap allocation. This optimization reduces memory allocation overhead and improves garbage collection efficiency.
+
+### Array Bounds Check Elimination:
+Array bounds check elimination is an optimization that eliminates unnecessary bounds checking when accessing array elements. By analyzing array access patterns and ensuring they are within valid bounds, the JIT compiler can eliminate redundant checks, improving performance in array-intensive computations.
+
 ## Advantages of JIT Compilation
 
 JIT compilation brings significant performance improvements. It translates the frequently executed parts of the bytecode into machine code, which runs much faster. Furthermore, the JIT compiler can apply various optimization techniques on the fly, such as inlining (replacing method calls with the method body), loop unrolling, and dead code elimination.
