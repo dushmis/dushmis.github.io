@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flame Support</title>
+    <meta
+      name="description"
+      content="Get help with Flame — subscription tracking app. Contact support, FAQs, and troubleshooting."
+    >
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --text: #172033;
+        --muted: #5b667a;
+        --border: #d9e0ea;
+        --accent: #f25f3a;
+        --accent-soft: #fff3ef;
+        --shadow: 0 18px 40px rgba(23, 32, 51, 0.08);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter",
+          "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(242, 95, 58, 0.08), transparent 28%),
+          linear-gradient(180deg, #f9fbff 0%, var(--bg) 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .page {
+        width: min(100% - 32px, 800px);
+        margin: 0 auto;
+        padding: 32px 0 48px;
+      }
+
+      .hero,
+      .card {
+        background: var(--surface);
+        border: 1px solid rgba(217, 224, 234, 0.9);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        padding: 32px 24px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0 0 12px;
+        line-height: 1.2;
+      }
+
+      h1 {
+        margin-top: 16px;
+        font-size: clamp(2rem, 6vw, 3rem);
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .lead {
+        max-width: 36rem;
+        margin: 0 auto;
+        font-size: 1rem;
+      }
+
+      main {
+        display: grid;
+        gap: 20px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .support-email {
+        display: inline-block;
+        margin: 14px 0 6px;
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+
+      .support-note {
+        font-size: 0.95rem;
+      }
+
+      .faq-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .faq-item {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fcfdff;
+      }
+
+      .faq-question {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        color: var(--text);
+        text-align: left;
+        padding: 18px 20px;
+        font: inherit;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        cursor: pointer;
+      }
+
+      .faq-question:hover,
+      .faq-question:focus-visible {
+        background: #f8fafc;
+      }
+
+      .faq-icon {
+        flex: 0 0 auto;
+        font-size: 1.25rem;
+        color: var(--accent);
+        transition: transform 0.2s ease;
+      }
+
+      .faq-answer {
+        padding: 0 20px 18px;
+        color: var(--muted);
+      }
+
+      .faq-item[open] .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      ul {
+        margin: 14px 0 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      footer {
+        padding: 28px 4px 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (min-width: 640px) {
+        .page {
+          padding-top: 48px;
+          padding-bottom: 56px;
+        }
+
+        .hero {
+          padding: 40px 36px;
+        }
+
+        .card {
+          padding: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="eyebrow">Flame Support</div>
+        <h1>Flame</h1>
+        <p class="lead">Subscription tracking made simple</p>
+      </header>
+
+      <main>
+        <section class="card" aria-labelledby="overview-title">
+          <h2 id="overview-title">Support Overview</h2>
+          <p>
+            Flame helps you track subscriptions, avoid unwanted charges, and
+            stay on top of recurring expenses with reminders and a clear view of
+            upcoming payments.
+          </p>
+        </section>
+
+        <section class="card" aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact Support</h2>
+          <p>If you need help with Flame, we’re happy to assist.</p>
+          <p>
+            <a class="support-email" href="mailto:support@d6t.in">support@d6t.in</a>
+          </p>
+          <p class="support-note">We typically respond within 24–48 hours.</p>
+        </section>
+
+        <section class="card" aria-labelledby="faq-title">
+          <h2 id="faq-title">Frequently Asked Questions</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>How do I add a subscription?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-answer">
+                Add a subscription from the main screen by entering the service
+                name, amount, billing cycle, and next renewal date, then save it
+                to your list.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>How do reminders work?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-answer">
+                Flame sends reminder notifications before an upcoming renewal so
+                you have time to review, cancel, or budget for the charge.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Can I cancel subscriptions through the app?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-answer">
+                No. Flame helps you monitor subscriptions and renewal dates, but
+                cancellations must be completed directly with the subscription
+                provider.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Is my data secure?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-answer">
+                Flame is designed to keep your subscription data private and only
+                uses the information needed to provide tracking and reminder
+                features.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>I found a bug — what should I do?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-answer">
+                Email <a href="mailto:support@d6t.in">support@d6t.in</a> with a
+                short description of the issue, your device model, iOS version,
+                and steps to reproduce it.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="troubleshooting-title">
+          <h2 id="troubleshooting-title">Troubleshooting</h2>
+          <ul>
+            <li>App not sending reminders: check notification permissions in iPhone Settings.</li>
+            <li>Missing subscriptions: make sure the subscription was saved successfully.</li>
+            <li>Login issues: try signing in again with Apple Sign-In.</li>
+          </ul>
+        </section>
+      </main>
+
+      <footer>
+        <p>Copyright © 2026 Flame</p>
+        <p><a href="/flame/privacy">Privacy Policy</a></p>
+      </footer>
+    </div>
+
+    <script>
+      const items = document.querySelectorAll(".faq-item");
+
+      items.forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (!item.open) {
+            return;
+          }
+
+          items.forEach((other) => {
+            if (other !== item) {
+              other.open = false;
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
